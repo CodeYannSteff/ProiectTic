@@ -1,352 +1,50 @@
-<div id="app" style="text-align:center; padding: 50px;">
+<!DOCTYPE html>
+<html lang="en">
 
-  <!-- Dark Mode Toggle -->
-  <!-- AND Gate Representation -->
-  <div class="dock-menu">
-    <a href="#and-gate" class="menu-item" id="and-menu">AND Gate</a>
-    <a href="#nand-gate" class="menu-item" id="nand-menu">NAND Gate</a>
-    <a href="#binary-interpreter" class="menu-item" id="binary-menu">Binary Interpreter</a>
-  </div>
-  <h2>AND Gate Simulation</h2>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Logic Gates Simulator</title>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="style.css">
+</head>
 
-  <div class="gate-container">
-    <!-- Input A -->
-    <div class="input-horizontal">
-      <label for="inputA" class="input-label">Input A</label>
-      <input type="checkbox" id="inputA" class="slider-checkbox" onclick="updateCurrent()">
-      <div class="line horizontal" id="lineA"></div>
-      <div class="bulb" id="bulbA"></div>
+<body>
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Logic Gates Simulator</h1>
+    <p>Learn and experiment with logic gates: AND, NAND, and Binary Interpreter</p>
+  </header>
+
+  <!-- Floating Dock Menu -->
+  <nav class="dock-menu">
+    <a href="and.html" class="menu-item">AND Gate</a>
+    <a href="nand.html" class="menu-item">NAND Gate</a>
+    <a href="binary.html" class="menu-item">Binary Interpreter</a>
+  </nav>
+
+  <!-- Main Content Section -->
+  <section class="main-content">
+    <div class="intro-text">
+      <h2>Welcome to the Logic Gate Simulator!</h2>
+      <p>Use the menu above to navigate through different sections. Explore the functionality of AND gates, NAND gates,
+        and a binary interpreter with interactive simulations and visual representations.</p>
     </div>
 
-    <!-- Input B -->
-    <div class="input-horizontal">
-      <label for="inputB" class="input-label">Input B</label>
-      <input type="checkbox" id="inputB" class="slider-checkbox" onclick="updateCurrent()">
-      <div class="line horizontal" id="lineB"></div>
-      <div class="bulb" id="bulbB"></div>
+    <!-- Placeholder for logic gates image or graphic -->
+    <div class="visual-preview">
+      <img src="logic-gates-preview.png" alt="Logic Gates Preview" class="preview-image">
     </div>
+  </section>
 
-    <!-- Vertical Line Connecting Inputs -->
-    <div class="connecting-line">
-      <div class="line vertical" id="lineConnecting"></div>
-      <div class="bulb" id="outputBulb"></div>
-    </div>
+  <!-- Footer Section -->
+  <footer class="footer">
+    <p>© 2024 Logic Gates Simulator. All rights reserved.</p>
+  </footer>
 
-    <p id="output-text">Output: 0</p>
-  </div>
-</div>
+  <!-- Link to external JavaScript file -->
+  <script src="script.js"></script>
+</body>
 
-<!-- Styles -->
-<style>
-  body {
-    transition: background-color 0.5s, color 0.5s;
-    font-family: Arial, sans-serif;
-  }
-
-  /* Dark Mode Styling */
-  #app {
-    background-color: #1e1e1e;
-    color: white;
-  }
-
-  .dark-mode {
-    background-color: #0a0a0a;
-    color: white;
-  }
-
-  /* Dark mode toggle switch */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    margin-bottom: 20px;
-  }
-
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-  }
-
-  input:checked+.slider {
-    background-color: #2196F3;
-  }
-
-  input:checked+.slider:before {
-    transform: translateX(26px);
-  }
-
-  /* Gate container */
-  .gate-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-  }
-
-  /* Horizontal input containers */
-  .input-horizontal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-
-  /* Connecting vertical line container */
-  .connecting-line {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-  }
-
-  /* Line for current flow */
-  .line {
-    height: 3px;
-    background-color: #333;
-    transition: background-color 0.4s ease;
-  }
-
-  /* Horizontal lines */
-  .line.horizontal {
-    width: 150px;
-    margin-left: 20px;
-  }
-
-  /* Vertical line connecting inputs */
-  .line.vertical {
-    height: 150px;
-    width: 3px;
-    background-color: #333;
-    transition: background-color 0.4s ease;
-    margin-top: 10px;
-  }
-
-  /* Bulb styling */
-  .bulb {
-    width: 30px;
-    height: 30px;
-    background-color: #333;
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-    transition: background-color 0.4s ease, box-shadow 0.4s ease;
-    margin-left: 10px;
-  }
-
-  /* Bright bulb when active */
-  .bulb.active {
-    background-color: #f9e07f;
-    box-shadow: 0 0 20px #f9e07f;
-  }
-
-  /* Label and checkbox for inputs */
-  .input-label {
-    font-size: 18px;
-    margin-right: 10px;
-  }
-
-  .slider-checkbox {
-    appearance: none;
-    width: 60px;
-    height: 30px;
-    background-color: #555;
-    border-radius: 34px;
-    position: relative;
-    outline: none;
-    cursor: pointer;
-    margin-right: 10px;
-    transition: background-color 0.3s ease;
-  }
-
-  .slider-checkbox:checked {
-    background-color: #4CAF50;
-  }
-
-  .slider-checkbox:before {
-    content: "";
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    background-color: white;
-    border-radius: 50%;
-    top: 2px;
-    left: 2px;
-    transition: transform 0.3s ease;
-  }
-
-  .slider-checkbox:checked:before {
-    transform: translateX(30px);
-  }
-
-  .floating-menu {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #333;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-  }
-
-  .menu-item {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    margin: 5px 0;
-    background-color: #444;
-    border-radius: 5px;
-    text-align: center;
-    transition: background-color 0.3s ease;
-  }
-
-  .menu-item:hover {
-    background-color: #555;
-  }
-
-  .dock-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #222;
-    padding: 15px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-  }
-
-  /* Menu Items */
-  .menu-item {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    background-color: #444;
-    border-radius: 8px;
-    text-align: center;
-    transition: transform 0.3s, background-color 0.3s;
-    position: relative;
-  }
-
-  /* Hover Effect (Zoom Animation) */
-  .menu-item:hover {
-    transform: scale(1.1);
-    background-color: #555;
-  }
-
-  /* Active Indicator (Bubble Animation) */
-  .menu-item::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 5px;
-    background-color: #4CAF50;
-    transition: width 0.3s;
-    border-radius: 5px;
-  }
-
-  /* Active state (selected page) */
-  .menu-item.active::after {
-    width: 80%;
-  }
-
-  /* Animation for Active Section */
-  .menu-item.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-
-  /* Responsive Menu */
-  @media (max-width: 768px) {
-    .menu-item {
-      padding: 8px 15px;
-    }
-  }
-</style>
-
-<!-- Script to Handle Dark Mode and Gate Logic -->
-<script>
-  document.querySelectorAll('.menu-item').forEach(item => {
-    item.addEventListener('click', function () {
-      // Remove active class from all menu items
-      document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
-      // Add active class to the clicked item
-      this.classList.add('active');
-    });
-  });
-  function toggleDarkMode() {
-    const app = document.getElementById("app");
-    const isDarkMode = document.getElementById("darkModeToggle").checked;
-    if (isDarkMode) {
-      app.classList.add("dark-mode");
-    } else {
-      app.classList.remove("dark-mode");
-    }
-  }
-
-  function updateCurrent() {
-    const inputA = document.getElementById("inputA").checked;
-    const inputB = document.getElementById("inputB").checked;
-
-    const lineA = document.getElementById("lineA");
-    const lineB = document.getElementById("lineB");
-    const lineConnecting = document.getElementById("lineConnecting");
-
-    const bulbA = document.getElementById("bulbA");
-    const bulbB = document.getElementById("bulbB");
-    const outputBulb = document.getElementById("outputBulb");
-
-    const outputText = document.getElementById("output-text");
-
-    // Update individual inputs
-    lineA.style.backgroundColor = inputA ? "#4CAF50" : "#333";
-    bulbA.classList.toggle("active", inputA);
-
-    lineB.style.backgroundColor = inputB ? "#4CAF50" : "#333";
-    bulbB.classList.toggle("active", inputB);
-
-    // AND gate logic: output is 1 only if both inputs are 1
-    if (inputA && inputB) {
-      lineConnecting.style.backgroundColor = "#4CAF50";
-      outputBulb.classList.add("active");
-      outputText.innerText = "Output: 1 (Current flows)";
-    } else {
-      lineConnecting.style.backgroundColor = "#333";
-      outputBulb.classList.remove("active");
-      outputText.innerText = "Output: 0 (No current)";
-    }
-  }
-</script>
+</html>
