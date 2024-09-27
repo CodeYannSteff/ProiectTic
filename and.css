@@ -1,0 +1,152 @@
+/* AND Gate Simulator */
+.and-gate-simulator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.input-group {
+  margin: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.input-group label {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  color: #4CAF50;
+}
+
+.switch {
+  width: 40px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: #666;
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+}
+
+.switch:checked {
+  background-color: #4CAF50;
+}
+
+/* Gate Visual Representation */
+.gate-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  position: relative;
+}
+
+.input-line {
+  width: 80px;
+  height: 5px;
+  background-color: #4CAF50;
+  margin-right: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.vertical-line {
+  width: 5px;
+  height: 80px;
+  background-color: #4CAF50;
+  margin: 0 20px;
+  transition: background-color 0.3s ease;
+}
+
+.output-bulb {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #444;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.5s ease;
+}
+
+.output-bulb.on {
+  background-color: #4CAF50;
+  box-shadow: 0 0 15px #4CAF50;
+}
+
+.output-bulb.off {
+  background-color: #444;
+}
+
+/* AND CIRCUIT
+ /* General styling for the circuit */
+.circuit-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+/* Styling for wires */
+.wire {
+  stroke: #555;
+  stroke-width: 5;
+  transition: stroke 0.5s ease, stroke-dasharray 1s ease;
+}
+
+/* Activated wires */
+.wire.active {
+  stroke: #4CAF50;
+  stroke-dasharray: 5, 5;
+  animation: flow 1s infinite linear;
+}
+
+/* Bulb style */
+.bulb {
+  fill: #333;
+  transition: fill 0.5s ease, box-shadow 0.5s ease;
+}
+
+.bulb.on {
+  fill: #4CAF50;
+  box-shadow: 0px 0px 15px 5px #4CAF50;
+}
+
+/* Input container styling */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.switch {
+  width: 40px;
+  height: 20px;
+  background-color: #555;
+  border-radius: 20px;
+  position: relative;
+  appearance: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.switch:checked {
+  background-color: #4CAF50;
+}
+
+/* Glow animation to simulate flowing current */
+@keyframes flow {
+  0% {
+    stroke-dashoffset: 100;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro"> <!-- Romanian language as specified -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsive design -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Compatibility mode -->
+  <title>Binary Interpreter</title> <!-- Page title -->
+  <link rel="stylesheet" href="bin.css"> <!-- Link to external CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Importing Poppins font -->
+</head>
+
+<body>
+  <!-- Floating Menu -->
+  <nav class="top-menu">
+    <a href="and.html" class="menu-item">AND Gate</a>
+    <a href="nand.html" class="menu-item">NAND Gate</a>
+    <a href="binary.html" class="menu-item active">Binary</a>
+  </nav>
+
+  <!-- Binary Interpreter Container -->
+  <div class="binary-container">
+    <h1>Binary Interpreter</h1>
+
+    <!-- Input and Convert Button -->
+    <div class="input-button-container">
+      <input type="text" id="textInput" placeholder="Introduceți text aici" />
+      <button id="convertButton">Convert to Binary</button>
+    </div>
+
+    <!-- Terminal-Like Output Display -->
+    <div class="terminal-container">
+      <div class="terminal-output" id="terminalOutput">
+        <!-- Animated binary output will appear here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="bin.js"></script>
+</body>
+
+</html>
